@@ -1,1 +1,1 @@
-**View Website: **https://zman008.github.io/EasyHire-Website/
+**View Website:** https://zman008.github.io/EasyHire-Website/
