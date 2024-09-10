@@ -5,9 +5,14 @@ body {
 }
 
 nav {
-    background-color: #7c7c61;
+    background-color: #1f1f1f;
     border-bottom: 1px solid #ccc;
     padding: 0em 5em;
+    user-select: none; /* Prevents text selection */
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none; /* For older Firefox versions */
+    -ms-user-select: none; /* For Internet Explorer and Edge */
+    -webkit-touch-callout: none; /* Prevents long press on mobile */
 }
 
 .nav-container {
@@ -33,7 +38,7 @@ nav {
 }
 
 .logo-easy {
-    color: #000;
+    color: #fff;
 }
 
 .logo-hire {
