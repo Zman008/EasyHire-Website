@@ -45,9 +45,14 @@ nav {
     color: #ffc31f;
 }
 
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .search-bar {
     height: 2em;
-    width: 80%;
+    width: 40%;
     max-width: 700px;
     background-color: #fff;
     display: flex;
@@ -109,4 +114,30 @@ nav {
 .login-button img {
     width: 3em;
     height: auto;
+}
+
+.catagories {
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.catagories div {   
+    width: 100%;
+    background-color: #4d4d4d;
+    color: #fff;
+    margin: 8px;
+    border: #1f1f1f 1px solid;
+    border-radius: 5px;
+    padding: 1em 20em;
+    min-width: 300px; /* Minimum width for each box */
+    min-height: 60px; /* Minimum height for each box */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box; /* Ensures padding is included in width/height */
 }
