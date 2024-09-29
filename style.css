@@ -116,7 +116,7 @@ nav {
     height: auto;
 }
 
-.catagories {
+.categories {
     margin: auto;
     width: 50%;
     display: flex;
@@ -125,7 +125,7 @@ nav {
     align-items: center;
 }
 
-.catagories div {   
+.categories div {   
     width: 100%;
     background-color: #4d4d4d;
     color: #fff;
