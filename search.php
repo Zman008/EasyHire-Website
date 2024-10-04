@@ -35,6 +35,7 @@ $result = mysqli_query($connection, $query);
                 echo "<h2><a href='post_details.php?id={$post['post_id']}'>" . htmlspecialchars($post['title']) . "</a></h2>";
                 echo "<div class='post-detail'><span class='left'>Category</span> " . $post['catagory'] . "</div>";
                 echo "<div class='post-detail'><span class='left'>Provider</span> <a href='provider_user.php?id={$provider['provider_id']}'>" . $provider['name'] . "</a></div>";
+                echo "<div class='post-detail'><span class='left'>Region</span> " . $post['region'] . "</div>";
                 echo "<div class='post-detail'><span class='left'>Details</span> " . $post['details'] . "</div>";
                 echo "<div class='post-detail'><span class='left'>Date</span> " . $post['date'] . "</div>";
                 echo "</div>";

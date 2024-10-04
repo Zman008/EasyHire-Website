@@ -45,6 +45,7 @@ mysqli_close($connection);
             <div class="user-info-title"><?php echo htmlspecialchars($post['title']); ?></div>
             <div><span class="left">Category</span> <?php echo $post['catagory']; ?></div>
             <div><span class="left">Provider</span>  <a href="provider_user.php?id=<?php echo $provider['provider_id']; ?>"><?php echo $provider['name']; ?></a></div>
+            <div><span class="left">Region</span> <?php echo $post['region']; ?></div>
             <div><span class="left">Details</span> <?php echo nl2br(html_entity_decode($post['details'])); ?></div>
             <div><span class="left">Date</span> <?php echo $post['date']; ?></div>
             <div><span class="left">Phone</span> <?php echo $provider['contact']; ?></div>

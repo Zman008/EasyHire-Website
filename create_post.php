@@ -22,14 +22,15 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS);
         $catagory = filter_input(INPUT_POST, "catagory", FILTER_SANITIZE_SPECIAL_CHARS);
+        $region = filter_input(INPUT_POST, "region", FILTER_SANITIZE_SPECIAL_CHARS);
         $details = filter_input(INPUT_POST, "details", FILTER_SANITIZE_SPECIAL_CHARS);
         $provider_id = $id;
         $date = date("Y-m-d");
 
         $sql = "INSERT INTO 
-                job_post (title, catagory, details, provider_id, date)
+                job_post (title, catagory, details, provider_id, date, region)
                 VALUES 
-                ('$title', '$catagory', '$details', '$provider_id', '$date')";
+                ('$title', '$catagory', '$details', '$provider_id', '$date', '$region')";
         try {
             mysqli_query($connection, $sql);
             header("Location: provider_prof.php");
@@ -75,6 +76,22 @@
                 <option value="Hairstylist">Hairstylist</option>
                 <option value="Event Planner">Event Planner</option>
                 <option value="Others" selected>Others</option>
+            </select>
+        </div>
+        <div class="form-control">
+            <label for="region">Region</label>
+            <select id="catagory" name="region">
+                <option value="Badda">Badda</option>
+                <option value="Banani">Banani</option>
+                <option value="Baridhara">Baridhara</option>
+                <option value="Bashundhara">Bashundhara</option>
+                <option value="Dhanmondi">Dhanmondi</option>
+                <option value="Gulshan">Gulshan</option>
+                <option value="Khilgaon">Khilgaon</option>
+                <option value="Mirpur">Mirpur</option>
+                <option value="Mohammadpur">Mohammadpur</option>
+                <option value="Rampura">Rampura</option>
+                <option value="Uttara">Uttara</option>
             </select>
         </div>
         <div class="form-control">
