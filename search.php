@@ -4,7 +4,7 @@ include("db_connect.php");
 
 if (isset($_GET['q'])) {
     $search_query = htmlspecialchars($_GET['q']);
-    echo "<h1>Search Results for: " . $search_query . "</h1>";
+    echo "<h1 style='margin: 1em 2em;'>Search Results for: " . $search_query . "</h1>";
 } else {
     echo "<h1>No search query provided.</h1>";
     header("Location: index.php");
