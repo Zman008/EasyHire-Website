@@ -36,7 +36,7 @@
 
             if (mysqli_query($connection, $sql)) {
                 $reviewMsg = "Review submitted successfully!";
-                header("Location: user_profile.php");
+                header("Location: post_details.php?id=$post_id");
             } else {
                 $reviewMsg = "Error: " . mysqli_error($connection);
             }

@@ -27,8 +27,6 @@ if (isset($_GET['id'])) {
     echo "No post ID provided.";
     header("Location: index.php");
 }
-
-mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +35,7 @@ mysqli_close($connection);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="post.css">
+    <link rel="stylesheet" href="table_style.css">
     <title><?php echo htmlspecialchars($post['title']); ?></title>
 </head>
 <body>
@@ -57,6 +56,33 @@ mysqli_close($connection);
                 <button class="review" type="submit" name="post_id" value="<?php echo $post_id; ?>">Save</button>
             </form>
             </div>
+        </div>
+
+        <div>
+            <h2>Reviews</h2>
+            <table>
+                <tr>
+                    <th>Rating</th>
+                    <th>Review</th>
+                </tr>
+                <?php 
+                $query = "SELECT * FROM review WHERE post_id = {$post_id}";
+                $result = mysqli_query($connection, $query);
+                
+                if ($result) {
+                    while ($review = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $review['ratings'] . "</td>";
+                        echo "<td>" . $review['comment'] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "Error fetching reviews: " . mysqli_error($connection);
+                }
+                
+                mysqli_close($connection);
+                ?>
+            </table>
         </div>
     </div>
 </body>
