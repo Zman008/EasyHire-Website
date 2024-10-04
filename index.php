@@ -13,22 +13,31 @@
 <body>
     <div class="cont-body">
         <div class="categories">
-            <div class="category-item photographer">Photographer</div>
-            <div class="category-item handyman">Handyman</div>
-            <div class="category-item tutor">Tutor</div>
-            <div class="category-item car-mechanic">Car Mechanic</div>
-            <div class="category-item plumber">Plumber</div>
-            <div class="category-item tow-truck">Tow Truck</div>
-            <div class="category-item electrician">Electrician</div>
-            <div class="category-item house-cleaner">House Cleaner</div>
-            <div class="category-item painter">Painter</div>
-            <div class="category-item landscaper">Landscaper</div>
-            <div class="category-item personal-trainer">Personal Trainer</div>
-            <div class="category-item massage-therapist">Massage Therapist</div>
-            <div class="category-item makeup-artist">Makeup Artist</div>
-            <div class="category-item hairstylist">Hairstylist</div>
-            <div class="category-item event-planner">Event Planner</div>
+            <div class="category-item">Photographer</div>
+            <div class="category-item">Handyman</div>
+            <div class="category-item">Tutor</div>
+            <div class="category-item">Car Mechanic</div>
+            <div class="category-item">Plumber</div>
+            <div class="category-item">Tow Truck</div>
+            <div class="category-item">Electrician</div>
+            <div class="category-item">House Cleaner</div>
+            <div class="category-item">Painter</div>
+            <div class="category-item">Landscaper</div>
+            <div class="category-item">Personal Trainer</div>
+            <div class="category-item">Massage Therapist</div>
+            <div class="category-item">Makeup Artist</div>
+            <div class="category-item">Hairstylist</div>
+            <div class="category-item">Event Planner</div>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const category = this.innerHTML.trim();
+                window.location.href = `search.php?q=${encodeURIComponent(category)}`;
+            });
+        });
+    </script>
 </body>
 </html>

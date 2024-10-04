@@ -33,10 +33,10 @@ $result = mysqli_query($connection, $query);
 
                 echo "<div class='post'>";
                 echo "<h2><a href='post_details.php?id={$post['post_id']}'>" . htmlspecialchars($post['title']) . "</a></h2>";
-                echo "<div><span class='left'>Category</span> " . $post['catagory'] . "</div>";
-                echo "<div><span class='left'>Provider</span> <a href='provider_prof.php?id={$provider['provider_id']}'>" . $provider['name'] . "</a></div>";
-                echo "<div><span class='left'>Details</span> " . $post['details'] . "</div>";
-                echo "<div><span class='left'>Date</span> " . $post['date'] . "</div>";
+                echo "<div class='post-detail'><span class='left'>Category</span> " . $post['catagory'] . "</div>";
+                echo "<div class='post-detail'><span class='left'>Provider</span> <a href='provider_prof.php?id={$provider['provider_id']}'>" . $provider['name'] . "</a></div>";
+                echo "<div class='post-detail'><span class='left'>Details</span> " . $post['details'] . "</div>";
+                echo "<div class='post-detail'><span class='left'>Date</span> " . $post['date'] . "</div>";
                 echo "</div>";
 
                 mysqli_free_result($resultProvider);
