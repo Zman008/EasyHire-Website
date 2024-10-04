@@ -62,6 +62,7 @@ nav {
 }
 
 .search-bar input {
+    width: 100%;
     padding-left: 1em;
     flex: 1;
     border: 0;

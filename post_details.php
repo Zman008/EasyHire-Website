@@ -43,8 +43,8 @@ mysqli_close($connection);
         <div class="container" style="width: 60%">
             <div class="user-info-title"><?php echo htmlspecialchars($post['title']); ?></div>
             <div><span class="left">Category</span> <?php echo $post['catagory']; ?></div>
-            <div><span class="left">Provider</span> <?php echo $provider['name']; ?></div>
-            <div><span class="left">Details</span> <?php echo $post['details']; ?></div>
+            <div><span class="left">Provider</span> <a href='provider_prof.php'><?php echo $provider['name']; ?></a></div>
+            <div><span class="left">Details</span> <?php echo nl2br(html_entity_decode($post['details'])); ?></div>
             <div><span class="left">Date</span> <?php echo $post['date']; ?></div>
             <div><span class="left">Phone</span> <?php echo $provider['contact']; ?></div>
         </div>
