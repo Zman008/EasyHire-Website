@@ -1,4 +1,5 @@
 <?php
+include("title_bar.php");
 include("db_connect.php");
 
 if (isset($_GET['id'])) {
@@ -24,7 +25,7 @@ if (isset($_GET['id'])) {
     }
 } else {
     echo "No post ID provided.";
-    exit;
+    header("Location: index.php");
 }
 
 mysqli_close($connection);
@@ -43,7 +44,7 @@ mysqli_close($connection);
         <div class="container" style="width: 60%">
             <div class="user-info-title"><?php echo htmlspecialchars($post['title']); ?></div>
             <div><span class="left">Category</span> <?php echo $post['catagory']; ?></div>
-            <div><span class="left">Provider</span> <a href='provider_prof.php'><?php echo $provider['name']; ?></a></div>
+            <div><span class="left">Provider</span>  <a href="provider_user.php?id=<?php echo $provider['provider_id']; ?>"><?php echo $provider['name']; ?></a></div>
             <div><span class="left">Details</span> <?php echo nl2br(html_entity_decode($post['details'])); ?></div>
             <div><span class="left">Date</span> <?php echo $post['date']; ?></div>
             <div><span class="left">Phone</span> <?php echo $provider['contact']; ?></div>
