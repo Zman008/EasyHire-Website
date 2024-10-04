@@ -15,18 +15,18 @@
         $contact = filter_input(INPUT_POST, "contact", FILTER_SANITIZE_SPECIAL_CHARS);
         $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_SPECIAL_CHARS);
         
-        $sql = "UPDATE user SET
-                    username = '$username', contact = '$contact', email = '$email', address = '$address' 
+        $sql = "UPDATE user_ SET
+                    name = '$username', contact = '$contact', email = '$email', address = '$address' 
                 WHERE 
-                    id = {$_SESSION['id']};";
+                    user_id = {$_SESSION['id']};";
         try {
             mysqli_query($connection, $sql);
             $registerMsg = "User Updated Successfully";
-            $_SESSION['username'] = $username;
+            $_SESSION['name'] = $username;
             $_SESSION['email'] = $email;
             $_SESSION['contact'] = $contact;
             $_SESSION['address'] = $address;
-            header("Location: user.php");
+            header("Location: user_profile.php");
         } catch (mysqli_sql_exception) {
             echo "ERROR<br>";
         }
@@ -48,7 +48,7 @@
         <h2 style="margin-top: 0px;">Edit Profile</h2>
         <div class="form-control">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" required value="<?php echo htmlspecialchars($_SESSION['username']); ?>">
+            <input type="text" id="username" name="username" required value="<?php echo htmlspecialchars($_SESSION['name']); ?>">
             <div class="errorMsg"><?php echo $usernameErr ?></div>
         </div>
         <div class="form-control">

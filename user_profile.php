@@ -3,13 +3,13 @@
     include("db_connect.php");
     session_start();
 
-    if (!isset($_SESSION['id'])) {
+    if (!isset($_SESSION['user_id'])) {
         header("Location: login.php");
     } else {
-        $id = $_SESSION['id'];
+        $id = $_SESSION['user_id'];
     }
 
-    $query = "SELECT * FROM user WHERE user_id = {$id}"; 
+    $query = "SELECT * FROM user_ WHERE user_id = {$id}"; 
     $result = mysqli_query($connection, $query);
 
     if ($result) {
@@ -48,7 +48,11 @@
             </div>
             <div class="logout">
                 <button onclick="window.location.href='logout.php';">Logout</button>
+                <button onclick="window.location.href='savedpost.php';">Saved Post</button>
             </div>
+            <?php 
+                   $_SESSION['name'] =$user['name'];
+                ?>
         </div>
     </div>
 

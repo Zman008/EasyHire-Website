@@ -18,9 +18,7 @@
             
             <div class="search-bar">
                 <span class="search-icon material-symbols-outlined">search</span>
-                <form action="search.php" method="get" style="width: 100%;">
-                    <input class="search-input" type="search" name="q" placeholder="Search Here">
-                </form>
+                <input class="search-input" type="search" placeholder="Search Here">
             </div>
 
             <div class="nav-side-buttons">

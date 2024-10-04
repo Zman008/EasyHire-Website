@@ -9,7 +9,7 @@
         $connection = mysqli_connect($db_server, 
                                         $db_user, 
                                         $db_password, 
-                                        $db_name);
+                                        $db_name,3307);
     } catch (mysqli_sql_exception) {
         die( "<small>Could not connect<small><br><br>");
     }

@@ -32,12 +32,14 @@ mysqli_close($connection);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="post.css">
     <title><?php echo htmlspecialchars($post['title']); ?></title>
 </head>
+
 <body>
     <div class="cont-body">
         <div class="container" style="width: 60%">
@@ -47,7 +49,20 @@ mysqli_close($connection);
             <div><span class="left">Details</span> <?php echo nl2br(html_entity_decode($post['details'])); ?></div>
             <div><span class="left">Date</span> <?php echo $post['date']; ?></div>
             <div><span class="left">Phone</span> <?php echo $provider['contact']; ?></div>
+            <div class="butt">
+            <form class="review_save" method="GET" action="review.php">
+                <button class="review" type="submit" name="post_id" value="<?php echo $post_id; ?>">Review</button>
+            </form>
+            <form class="review_save" method="GET" action="postsaving.php">
+                <button class="review" type="submit" name="post_id" value="<?php echo $post_id; ?>">Save</button>
+            </form>
+            </div>
+            
         </div>
     </div>
 </body>
+
 </html>
+<?php
+
+?>
