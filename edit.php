@@ -16,17 +16,17 @@
         $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_SPECIAL_CHARS);
         
         $sql = "UPDATE user SET
-                    username = '$username', contact = '$contact', email = '$email', address = '$address' 
+                    name = '$username', contact = '$contact', email = '$email', address = '$address' 
                 WHERE 
-                    id = {$_SESSION['id']};";
+                    user_id = {$_SESSION['user_id']};";
         try {
             mysqli_query($connection, $sql);
             $registerMsg = "User Updated Successfully";
-            $_SESSION['username'] = $username;
+            $_SESSION['name'] = $username;
             $_SESSION['email'] = $email;
             $_SESSION['contact'] = $contact;
             $_SESSION['address'] = $address;
-            header("Location: user.php");
+            header("Location: user_profile.php");
         } catch (mysqli_sql_exception) {
             echo "ERROR<br>";
         }

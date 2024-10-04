@@ -39,7 +39,7 @@
             $sql = "SELECT * FROM provider WHERE name = '$username'";
             $result = mysqli_query($connection, $sql);
             $row = mysqli_fetch_assoc($result);
-            $_SESSION['id'] = $row['provider_id'];
+            $_SESSION['provider_id'] = $row['provider_id'];
             $_SESSION['username'] = $row['name'];
             header("Location: provider_prof.php");
         }

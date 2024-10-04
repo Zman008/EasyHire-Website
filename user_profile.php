@@ -3,10 +3,10 @@
     include("db_connect.php");
     session_start();
 
-    if (!isset($_SESSION['id'])) {
+    if (!isset($_SESSION['user_id'])) {
         header("Location: login.php");
     } else {
-        $id = $_SESSION['id'];
+        $id = $_SESSION['user_id'];
     }
 
     $query = "SELECT * FROM user WHERE user_id = {$id}"; 
@@ -45,6 +45,7 @@
                 <button onclick="window.location.href='edit.php';">Edit Profile</button>
                 <button onclick="window.location.href='passwordChange.php';">Change Password</button>
                 <button onclick="confirmDeletion()">Delete Account</button>
+                <button onclick="window.location.href='savedpost.php';">Saved Posts</button>
             </div>
             <div class="logout">
                 <button onclick="window.location.href='logout.php';">Logout</button>

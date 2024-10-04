@@ -2,10 +2,10 @@
     include("db_connect.php");
     session_start();
 
-    if (!isset($_SESSION['id'])) {
+    if (!isset($_SESSION['provider_id'])) {
         header("Location: provider_login.php");
     } else {
-        $id = $_SESSION['id'];
+        $id = $_SESSION['provider_id'];
     }
 
     $query = "SELECT * FROM provider WHERE provider_id = {$id}"; 

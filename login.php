@@ -45,8 +45,8 @@
             $sql = "SELECT * FROM user WHERE name = '$username'";
             $result = mysqli_query($connection, $sql);
             $row = mysqli_fetch_assoc($result);
-            $_SESSION['id'] = $row['user_id'];
-            $_SESSION['username'] = $row['username'];
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['username'] = $row['name'];
             $_SESSION['contact'] = $row['contact'];
             $_SESSION['address'] = $row['address'];
             $_SESSION['email'] = $row['email'];

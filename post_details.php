@@ -47,6 +47,14 @@ mysqli_close($connection);
             <div><span class="left">Details</span> <?php echo nl2br(html_entity_decode($post['details'])); ?></div>
             <div><span class="left">Date</span> <?php echo $post['date']; ?></div>
             <div><span class="left">Phone</span> <?php echo $provider['contact']; ?></div>
+            <div class="butt">
+            <form class="review_save" method="GET" action="review.php">
+                <button class="review" type="submit" name="post_id" value="<?php echo $post_id; ?>">Review</button>
+            </form>
+            <form class="review_save" method="GET" action="postsaving.php">
+                <button class="review" type="submit" name="post_id" value="<?php echo $post_id; ?>">Save</button>
+            </form>
+            </div>
         </div>
     </div>
 </body>

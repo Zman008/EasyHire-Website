@@ -27,7 +27,7 @@
             $passwordErr = "Incorrect Password";
         } else {
             $sql = "UPDATE user SET password = '$newPassword'
-                    WHERE id = {$_SESSION['id']};";
+                    WHERE id = {$_SESSION['user_id']};";
             $result = mysqli_query($connection, $sql);
             $successMsg = "Password Change Successful";
             header("Location: user.php");
