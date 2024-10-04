@@ -27,7 +27,7 @@
                 <div id="location-button" class="location-button">
                     Select Location
                 </div>
-                <a href="login.php">
+                <a href="check_login.php">
                     <div class="login-button">
                         <img src="img/account.png" alt="Login">
                     </div>
