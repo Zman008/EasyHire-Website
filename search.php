@@ -10,7 +10,12 @@ if (isset($_GET['q'])) {
     header("Location: index.php");
 }
 
-$query = "SELECT * FROM job_post WHERE title LIKE '%$search_query%' OR catagory LIKE '%$search_query%'";
+if (isset($_COOKIE['region']) && $_COOKIE['region'] != "All") {
+    $query = "SELECT * FROM job_post WHERE (title LIKE '%$search_query%' OR catagory LIKE '%$search_query%') AND region = '{$_COOKIE['region']}'";
+} else {
+    $query = "SELECT * FROM job_post WHERE title LIKE '%$search_query%' OR catagory LIKE '%$search_query%'";
+}
+
 $result = mysqli_query($connection, $query);
 ?>
 
