@@ -11,9 +11,13 @@ if (isset($_GET['q'])) {
 }
 
 if (isset($_COOKIE['region']) && $_COOKIE['region'] != "All") {
-    $query = "SELECT * FROM job_post WHERE (title LIKE '%$search_query%' OR catagory LIKE '%$search_query%') AND region = '{$_COOKIE['region']}'";
+    $query = "SELECT * FROM job_post j 
+            JOIN provider p ON j.provider_id = p.provider_id 
+            WHERE (title LIKE '%$search_query%' OR catagory LIKE '%$search_query%') AND region = '{$_COOKIE['region']}'";
 } else {
-    $query = "SELECT * FROM job_post WHERE title LIKE '%$search_query%' OR catagory LIKE '%$search_query%'";
+    $query = "SELECT * FROM job_post j 
+            JOIN provider p ON j.provider_id = p.provider_id 
+            WHERE title LIKE '%$search_query%' OR catagory LIKE '%$search_query%'";
 }
 
 $result = mysqli_query($connection, $query);
@@ -32,20 +36,14 @@ $result = mysqli_query($connection, $query);
         <?php 
         if (mysqli_num_rows($result) > 0) {
             while ($post = mysqli_fetch_assoc($result)) {
-                $queryProvider = "SELECT * FROM provider WHERE provider_id = {$post['provider_id']}";
-                $resultProvider = mysqli_query($connection, $queryProvider);
-                $provider = mysqli_fetch_assoc($resultProvider);
-
                 echo "<div class='post'>";
                 echo "<h2><a href='post_details.php?id={$post['post_id']}'>" . htmlspecialchars($post['title']) . "</a></h2>";
                 echo "<div class='post-detail'><span class='left'>Category</span> " . $post['catagory'] . "</div>";
-                echo "<div class='post-detail'><span class='left'>Provider</span> <a href='provider_user.php?id={$provider['provider_id']}'>" . $provider['name'] . "</a></div>";
+                echo "<div class='post-detail'><span class='left'>Provider</span> <a href='provider_user.php?id={$post['provider_id']}'>" . $post['name'] . "</a></div>";
                 echo "<div class='post-detail'><span class='left'>Region</span> " . $post['region'] . "</div>";
                 echo "<div class='post-detail'><span class='left'>Details</span> " . $post['details'] . "</div>";
                 echo "<div class='post-detail'><span class='left'>Date</span> " . $post['date'] . "</div>";
                 echo "</div>";
-
-                mysqli_free_result($resultProvider);
             }
 
             mysqli_free_result($result);

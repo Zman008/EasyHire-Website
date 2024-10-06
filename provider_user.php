@@ -4,7 +4,9 @@
     
     if (isset($_GET['id'])) {
         $id = intval($_GET['id']);
-        $query = "SELECT * FROM provider WHERE provider_id = {$id}";
+        $query = "SELECT * FROM provider p 
+                JOIN job_post j ON p.provider_id = j.provider_id
+                WHERE j.provider_id = {$id}";
         $result = mysqli_query($connection, $query);
 
         if ($result) {
@@ -15,8 +17,6 @@
     } else {
         header("Location: index.php");
     }
-
-    mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
@@ -52,8 +52,6 @@
                     <th>Date</th>
                 </tr>
                 <?php 
-                include("db_connect.php");
-                $query = "SELECT * FROM job_post WHERE provider_id = {$id}";
                 $result = mysqli_query($connection, $query);
                 
                 if ($result) {
