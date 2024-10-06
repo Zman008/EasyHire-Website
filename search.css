@@ -14,10 +14,6 @@
     padding: 10px 30px;
 }
 
-.post {
-    min-width: 100%;
-}
-
 .post-detail {
     display: flex;
 }
@@ -25,4 +21,8 @@
 .left {
     color: #888;
     margin-right: 10px;
+}
+
+.post {
+    min-width: 100%;
 }

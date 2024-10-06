@@ -11,25 +11,24 @@ if (!isset($_SESSION['provider_id'])) {
 }
 
 if (isset($_GET['bid'])) {
-    $booking_id = intval($_GET['bid']); // Make sure to use intval to prevent SQL injection
-    if (isset($_GET['action'])) {
+    $booking_id = intval($_GET['bid']); 
         $action = $_GET['action'];
 
         if ($action == 'confirm') {
-            // Update the status to 'Confirmed'
+
             $update_query = "UPDATE booking SET status = 'Confirmed' WHERE booking_id = '$booking_id' ";
             mysqli_query($connection, $update_query);
-        } elseif ($action == 'delete') {
-            // Delete the booking
-            $delete_query = "DELETE FROM booking WHERE booking_id = '$booking_id' ";
-            mysqli_query($connection, $delete_query);
+        } elseif ($action == 'reject') {
+
+            $update_query = "UPDATE booking SET status = 'Reject' WHERE booking_id = '$booking_id' ";
+            mysqli_query($connection, $update_query);
         }
         
-        // Redirect back to the request page
+
         header("Location: request.php");
         exit();
     }
-}
+
 
 
 ?>
@@ -77,7 +76,7 @@ if (isset($_GET['bid'])) {
                     echo "<td>" . $post['tt'] . "</td>";
                     echo "<td>
                              <a href='request.php?bid={$post['booking_id']}&action=confirm' class='button'>Confirm</a>
-                             <a href='request.php?bid={$post['booking_id']}&action=delete' class='button'>Delete</a>
+                             <a href='request.php?bid={$post['booking_id']}&action=reject' class='button'>Reject</a>
                           </td>";
                     echo "</tr>";
                 }

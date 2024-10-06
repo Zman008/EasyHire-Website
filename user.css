@@ -66,3 +66,14 @@ button:hover {
     background-color: rgb(225, 125, 2);
     transform: translateY(-2px);
 }
+.inbox-icon {
+    position: right;
+    top: 0;
+    right: 0;
+    font-size: 28px;
+    cursor: pointer;
+    color: #fb0;
+}
+.inbox-icon:hover {
+    color:rgb(225, 125, 2);
+}

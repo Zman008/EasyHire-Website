@@ -5,12 +5,13 @@ include("db_connect.php");
 if (isset($_GET['id'])) {
     $post_id = intval($_GET['id']);
     $query = "SELECT 
-                title, catagory, j.provider_id, p.name as name, p.contact, j.region, details, date, ratings, comment, u.name as user_name
-            FROM job_post j 
-            JOIN provider p ON j.provider_id = p.provider_id 
-            LEFT JOIN review r ON j.post_id = r.post_id
-            LEFT JOIN user u ON r.user_id = u.user_id
-            WHERE j.post_id = {$post_id}";
+        title, catagory, j.provider_id, p.name as name, 
+        p.contact, j.region, details, date, ratings, comment, u.name as user_name
+        FROM job_post j 
+        JOIN provider p ON j.provider_id = p.provider_id 
+        LEFT JOIN review r ON j.post_id = r.post_id
+        LEFT JOIN user u ON r.user_id = u.user_id
+    WHERE j.post_id = {$post_id}";
     $result = mysqli_query($connection, $query);
 
     if ($result) {
@@ -85,6 +86,7 @@ if (isset($_GET['id'])) {
                 <th>Review</th>
             </tr>
             <?php
+
             $result = mysqli_query($connection, $query);
 
             if ($result) {

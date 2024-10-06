@@ -26,13 +26,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>User Info</title>
     <link rel="stylesheet" href="user.css">
 </head>
 <body>
     <div class="cont-body">
         <div class="container">
-            <div class="user-info-title">User Information</div>
+            <div class="user-info-title">User Information
+            </div>
+            <span class="inbox-icon material-symbols-outlined" onclick="window.location.href='user_inbox.php';">mail</span>
             <?php if (isset($user)): ?>
                 <div><span class="left">Username</span> <span><?php echo $user['name']; ?></span></div>
                 <div><span class="left">Phone</span> <span><?php echo $user['contact']; ?></span></div>
