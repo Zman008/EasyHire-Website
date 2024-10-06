@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (isset($_SESSION['user_id'])) {
-        header("Location: user_profile.php");
+        header("Location: user_prof.php");
     } else if (isset($_SESSION['provider_id'])) {
         header("Location: provider_profile.php");
     } else {
