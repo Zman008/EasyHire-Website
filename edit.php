@@ -15,10 +15,10 @@
         $contact = filter_input(INPUT_POST, "contact", FILTER_SANITIZE_SPECIAL_CHARS);
         $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_SPECIAL_CHARS);
         
-        $sql = "UPDATE user_ SET
+        $sql = "UPDATE user SET
                     name = '$username', contact = '$contact', email = '$email', address = '$address' 
                 WHERE 
-                    user_id = {$_SESSION['id']};";
+                    user_id = {$_SESSION['user_id']};";
         try {
             mysqli_query($connection, $sql);
             $registerMsg = "User Updated Successfully";
@@ -48,7 +48,7 @@
         <h2 style="margin-top: 0px;">Edit Profile</h2>
         <div class="form-control">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" required value="<?php echo htmlspecialchars($_SESSION['name']); ?>">
+            <input type="text" id="username" name="username" required value="<?php echo htmlspecialchars($_SESSION['username']); ?>">
             <div class="errorMsg"><?php echo $usernameErr ?></div>
         </div>
         <div class="form-control">

@@ -4,9 +4,10 @@
 
     $usernameErr = "";
     $passwordErr = "";
+
     function checkUsername($username) {
         global $connection;
-        $sql = "SELECT * FROM provider WHERE name = '$username'";
+        $sql = "SELECT * FROM admin WHERE username = '$username'";
         $result = mysqli_query($connection, $sql);
         if (mysqli_num_rows($result) > 0) {
             return true;
@@ -17,7 +18,7 @@
 
     function checkPassword($username, $password) {
         global $connection;
-        $sql = "SELECT * FROM provider WHERE name = '$username'";
+        $sql = "SELECT * FROM admin WHERE username = '$username'";
         $result = mysqli_query($connection, $sql);
         $row = mysqli_fetch_assoc($result);
         if ($row['password'] == $password) {
@@ -36,12 +37,11 @@
         } else if (!checkPassword($username, $password)) {
             $passwordErr = "Incorrect Password";
         } else {
-            $sql = "SELECT * FROM provider WHERE name = '$username'";
+            $sql = "SELECT * FROM admin WHERE username = '$username'";
             $result = mysqli_query($connection, $sql);
             $row = mysqli_fetch_assoc($result);
-            $_SESSION['provider_id'] = $row['provider_id'];
-            $_SESSION['username'] = $row['name'];
-            header("Location: provider_prof.php");
+            $_SESSION['admin_username'] = $row['username'];
+            header("Location: admin.php");
         }
     }
 
@@ -53,13 +53,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provider Login</title>
+    <title>Admin Login</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <div class="container">
         <form class="registration-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-            <h2 style="margin-top: 0px;">Provider Login</h2>
+            <h2 style="margin-top: 0px;">Admin Login</h2>
             <div class="form-control">
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <div class="errorMsg"><?php echo $usernameErr ?></div>
@@ -71,7 +71,6 @@
             <div class="form-control">
                 <input type="submit" value="Login">
             </div>
-            <a href="provider_register.php" style="font-size: small">Register as a new Provider</a>
         </form>
     </div>
 </body>

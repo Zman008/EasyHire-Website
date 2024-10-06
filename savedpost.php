@@ -3,7 +3,7 @@
     include("db_connect.php");
     session_start();
     if (!isset($_SESSION['user_id'])) {
-        header("Location: provider_login.php");
+        header("Location: user_login.php");
     } else {
         $id = $_SESSION['user_id'];
     }

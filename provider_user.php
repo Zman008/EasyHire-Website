@@ -1,39 +1,19 @@
 <?php 
-    include("db_connect.php");
     include("title_bar.php");
-    session_start();
+    include("db_connect.php");
+    
+    if (isset($_GET['id'])) {
+        $id = intval($_GET['id']);
+        $query = "SELECT * FROM provider WHERE provider_id = {$id}";
+        $result = mysqli_query($connection, $query);
 
-    if (!isset($_SESSION['provider_id'])) {
-        header("Location: provider_login.php");
+        if ($result) {
+            $user = mysqli_fetch_assoc($result);
+        } else {
+            echo "Error fetching user data: " . mysqli_error($connection);
+        }
     } else {
-        $id = $_SESSION['provider_id'];
-    }
-
-    $query = "SELECT * FROM provider WHERE provider_id = {$id}"; 
-    $result = mysqli_query($connection, $query);
-
-    if ($result) {
-        $user = mysqli_fetch_assoc($result);
-    } else {
-        echo "Error fetching user data: " . mysqli_error($connection);
-    }
-
-
-    $query_pending = "SELECT COUNT(booking_id) AS pending_count 
-                      FROM booking 
-                      JOIN job_post ON booking.post_id = job_post.post_id 
-                      JOIN provider ON provider.provider_id = job_post.provider_id  
-                      WHERE provider.provider_id = {$id} AND booking.status = 'Pending'";
-
-    // Execute the query
-    $result_pending = mysqli_query($connection, $query_pending);
-
-    // Check if the query was successful
-    if ($result_pending) {
-        $pending_booking = mysqli_fetch_assoc($result_pending)['pending_count'];
-        
-    } else {
-        echo "Error: " . mysqli_error($connection);
+        header("Location: index.php");
     }
 
     mysqli_close($connection);
@@ -57,19 +37,13 @@
                 <div><span class="left">Phone</span> <span><?php echo htmlspecialchars($user['contact']); ?></span></div>
                 <div><span class="left">Address</span> <span><?php echo htmlspecialchars($user['address']); ?></span></div>
                 <div><span class="left">Email</span> <span><?php echo htmlspecialchars($user['email']); ?></span></div>
-                <div><span class="left">Pending request</span> <span><a href="request.php"><?php echo $pending_booking; ?></a></span></div>
             <?php else: ?>
                 <div>No user data found.</div>
             <?php endif; ?>
-            <div class="buttons">
-                <button onclick="window.location.href='create_post.php';">Create Post</button>
-                <button onclick="window.location.href='allreq.php';">Inbox</button>
-                <button onclick="window.location.href='logout.php';">Logout</button>
-            </div>
         </div>
         
         <div>
-            <h2>My Posts</h2>
+            <h2>Posts</h2>
             <table>
                 <tr>
                     <th>Title</th>

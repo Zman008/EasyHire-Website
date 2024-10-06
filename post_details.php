@@ -1,4 +1,5 @@
 <?php
+include("title_bar.php");
 include("db_connect.php");
 
 if (isset($_GET['id'])) {
@@ -24,10 +25,8 @@ if (isset($_GET['id'])) {
     }
 } else {
     echo "No post ID provided.";
-    exit;
+    header("Location: index.php");
 }
-
-mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +36,21 @@ mysqli_close($connection);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="post.css">
+    <link rel="stylesheet" href="table_style.css">
+    <style>
+        /* Text area for message input */
+        .hiring-section textarea {
+            height: 40px;
+            /* Same height as button */
+            padding: 8px;
+            margin-right: 10px;
+            /* Add space between textarea and button */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9em;
+            resize: none;
+        }
+    </style>
     <title><?php echo htmlspecialchars($post['title']); ?></title>
 </head>
 
@@ -45,24 +59,54 @@ mysqli_close($connection);
         <div class="container" style="width: 60%">
             <div class="user-info-title"><?php echo htmlspecialchars($post['title']); ?></div>
             <div><span class="left">Category</span> <?php echo $post['catagory']; ?></div>
-            <div><span class="left">Provider</span> <a href='provider_prof.php'><?php echo $provider['name']; ?></a></div>
+            <div><span class="left">Provider</span> <a href="provider_user.php?id=<?php echo $provider['provider_id']; ?>"><?php echo $provider['name']; ?></a></div>
+            <div><span class="left">Region</span> <?php echo $post['region']; ?></div>
             <div><span class="left">Details</span> <?php echo nl2br(html_entity_decode($post['details'])); ?></div>
             <div><span class="left">Date</span> <?php echo $post['date']; ?></div>
             <div><span class="left">Phone</span> <?php echo $provider['contact']; ?></div>
             <div class="butt">
-            <form class="review_save" method="GET" action="review.php">
-                <button class="review" type="submit" name="post_id" value="<?php echo $post_id; ?>">Review</button>
-            </form>
-            <form class="review_save" method="GET" action="postsaving.php">
-                <button class="review" type="submit" name="post_id" value="<?php echo $post_id; ?>">Save</button>
-            </form>
+                <form class="review_save" method="GET" action="review.php">
+                    <button class="review" type="submit" name="post_id" value="<?php echo $post_id; ?>">Review</button>
+                </form>
+                <form class="review_save" method="GET" action="postsaving.php">
+                    <button class="review" type="submit" name="post_id" value="<?php echo $post_id; ?>">Save</button>
+                </form>
+                <form class="review_save" method="GET" action="booking.php">
+                    <button class="hire-button" type="submit" name="post_id" value="<?php echo $post_id; ?>">Hire/Book</button>
+                </form>
+
             </div>
-            
+
         </div>
+    </div>
+
+    <div>
+        <h2>Reviews</h2>
+        <table>
+            <tr>
+                <th>Rating</th>
+                <th>Review</th>
+            </tr>
+            <?php
+            $query = "SELECT * FROM review WHERE post_id = {$post_id}";
+            $result = mysqli_query($connection, $query);
+
+            if ($result) {
+                while ($review = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $review['ratings'] . "</td>";
+                    echo "<td>" . $review['comment'] . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "Error fetching reviews: " . mysqli_error($connection);
+            }
+
+            mysqli_close($connection);
+            ?>
+        </table>
+    </div>
     </div>
 </body>
 
 </html>
-<?php
-
-?>

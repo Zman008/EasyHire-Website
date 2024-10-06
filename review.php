@@ -5,12 +5,10 @@
         header("Location: login.php");
     } else {
         $id = $_SESSION['user_id'];
-        echo"$id";
     }
 
     if (isset($_GET['post_id'])) {
         $post_id = intval($_GET['post_id']); 
-        echo" $post_id";
     } else {
         echo "No post ID provided.";
         exit;
@@ -38,6 +36,7 @@
 
             if (mysqli_query($connection, $sql)) {
                 $reviewMsg = "Review submitted successfully!";
+                header("Location: post_details.php?id=$post_id");
             } else {
                 $reviewMsg = "Error: " . mysqli_error($connection);
             }

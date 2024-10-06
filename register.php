@@ -10,7 +10,7 @@
     
     function checkUsername($username) {
         global $connection;
-        $sql = "SELECT * FROM user_ WHERE name = '$username'";
+        $sql = "SELECT * FROM user WHERE name = '$username'";
         $result = mysqli_query($connection, $sql);
         if (mysqli_num_rows($result) > 0) {
             return true;
@@ -21,7 +21,7 @@
 
     function checkEmail($email) {
         global $connection;
-        $sql = "SELECT * FROM user_ WHERE email = '$email'";
+        $sql = "SELECT * FROM user WHERE email = '$email'";
         $result = mysqli_query($connection, $sql);
         if (mysqli_num_rows($result) > 0) {
             return true;
@@ -32,7 +32,7 @@
 
     function checkContact($contact) {
         global $connection;
-        $sql = "SELECT * FROM user_ WHERE contact = '$contact'";
+        $sql = "SELECT * FROM user WHERE contact = '$contact'";
         $result = mysqli_query($connection, $sql);
         if (mysqli_num_rows($result) > 0) {
             return true;
@@ -57,7 +57,7 @@
         } else {
             password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO 
-                    user_ (name, password, contact, address, email) 
+                    user (name, password, contact, address, email) 
                     VALUES 
                     ('$username', '$password', '$contact', '$address', '$email')";
             try {

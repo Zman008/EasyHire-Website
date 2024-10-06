@@ -11,7 +11,7 @@
 
     function checkUsername($username) {
         global $connection;
-        $sql = "SELECT * FROM user_ WHERE name = '$username'";
+        $sql = "SELECT * FROM user WHERE name = '$username'";
         $result = mysqli_query($connection, $sql);
         if (mysqli_num_rows($result) > 0) {
             return true;
@@ -22,7 +22,7 @@
 
     function checkPassword($username, $password) {
         global $connection;
-        $sql = "SELECT * FROM user_ WHERE name = '$username'";
+        $sql = "SELECT * FROM user WHERE name = '$username'";
         $result = mysqli_query($connection, $sql);
         $row = mysqli_fetch_assoc($result);
         if ($row['password'] == $password) {
@@ -42,11 +42,11 @@
             $passwordErr = "Incorrect Password";
         } else {
             echo"nunu";
-            $sql = "SELECT * FROM user_ WHERE name = '$username'";
+            $sql = "SELECT * FROM user WHERE name = '$username'";
             $result = mysqli_query($connection, $sql);
             $row = mysqli_fetch_assoc($result);
             $_SESSION['user_id'] = $row['user_id'];
-            $_SESSION['username'] = $row['username'];
+            $_SESSION['username'] = $row['name'];
             $_SESSION['contact'] = $row['contact'];
             $_SESSION['address'] = $row['address'];
             $_SESSION['email'] = $row['email'];

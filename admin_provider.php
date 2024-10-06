@@ -5,7 +5,7 @@
         header("Location: admin_login.php");
     }
 
-    $sql = "SELECT * FROM user";
+    $sql = "SELECT * FROM provider";
     $result = mysqli_query($connection, $sql);
     $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -27,7 +27,7 @@
         <button onclick="window.location.href='admin_posts.php';">Posts</button>
         <button onclick="window.location.href='logout.php';">Logout</button>
     </div>
-    <h1>Users</h1>
+    <h1>Provider</h1>
     <table border="1">
         <tr>
             <th>Username</th>
@@ -47,4 +47,4 @@
         <?php } ?>
     </table>
 </body>
-</html>
+</html> 
